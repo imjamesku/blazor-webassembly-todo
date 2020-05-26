@@ -1,0 +1,30 @@
+﻿@page "/"
+@using System.Collections.Generic
+
+<h1>Todo List</h1>
+
+<ul>
+@foreach (var item in todoItems)
+{
+    <li class="todoItem">
+        @item.Text
+    </li>
+}
+</ul>
+<input type="text" @bind-value="inputText">
+<button class="btn btn-primary" @onclick="addItem">Add Item</button>
+
+@code {
+    class TodoItem
+    {
+        public string Text { set; get; }
+
+    }
+
+    private List<TodoItem> todoItems = new List<TodoItem>();
+    private string inputText = "";
+    private void addItem()
+    {
+        todoItems.Add(new TodoItem { Text = inputText });
+    }
+}
